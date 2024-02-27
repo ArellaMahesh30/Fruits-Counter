@@ -1,69 +1,74 @@
-import React, {useState} from 'react';
-import './App.css'
+import React, { useState } from 'react';
+import './App.css';
+
 function App() {
-let [inputtodo,setinputtodo] = useState('')
-let [todolist, settodolist] = useState([])
-let nxtId = 3 
+  let [inputtodo, setinputtodo] = useState('');
+  let [todolist, settodolist] = useState([
+    {
+      id: 1,
+      task: 'react'
+    },
+    {
+      id: 2,
+      task: 'react'
+    }
+  ]);
+  let [nxtId, setNxtId] = useState(3); // Using state to manage nxtId
 
-
-function onaddTodoElemnt() {
-  if (inputtodo === '') {
-    alert('Add Some Task')
+  function onaddTodoElemnt() {
+    if (inputtodo === '') {
+      alert('Add Some Task');
+    } else {
+      let newTodo = [
+        ...todolist,
+        {
+          id: nxtId,
+          task: inputtodo
+        }
+      ];
+      settodolist(newTodo);
+      setinputtodo('');
+      setNxtId(nxtId + 1); // Incrementing nxtId when adding a new todo
+    }
   }
-  else{
-    let newTodo = [
-      ...todolist,
-      {
-        id : nxtId,
-        task : inputtodo
-      }
-    ]
 
-    settodolist(newTodo)
-    setinputtodo('')
-
+  function ondeletetodo(id) {
+    let newTodoslist = todolist.filter((todo) => todo.id !== id);
+    settodolist(newTodoslist);
   }
-}
 
-function ondeletetodo(id) {
- let newTodoslist = todolist.filter((todo) => {
-      return todo.id !== id
- })
-
- settodolist(newTodoslist)
-}
-
-  return(
+  return (
     <div>
-     <h1>Todo App</h1> 
-     <div className='container'>
-      <input type='text' value={inputtodo} onChange={(event)=> {
-        let inputValue = event.target.value
-        setinputtodo(inputValue)
-      }}/>
-      <button className='button' onClick={()=> {
-        onaddTodoElemnt()
-      }}>Add</button> 
+      <h1>Todo App</h1>
+      <div className='container'>
+        <input
+          type='text'
+          value={inputtodo}
+          onChange={(event) => {
+            let inputValue = event.target.value;
+            setinputtodo(inputValue);
+          }}
+        />
+        <button className='button' onClick={onaddTodoElemnt}>
+          Add
+        </button>
       </div>
       <div>
-            {
-              todolist.map((todo) =>{
-               return(
-                <ul>
-                <li className='list-group'>
+        <ul>
+          {todolist.map((todo) => {
+            return (
+              <li key={todo.id} className='list-group'>
                 <p className='para'>{todo.task}</p>
-                 <button className='into-button' onClick={()=> {
-                  ondeletetodo(todo.id)
-                 } }>❌</button>
-                </li>
-              </ul> 
-               )
-              })
-            }
-      
-     </div>
+                <button className='into-button' onClick={() => ondeletetodo(todo.id)}>
+                  ❌
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
