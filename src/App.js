@@ -1,74 +1,48 @@
-import React, { useState } from 'react';
-import './App.css';
+import React, {useState} from 'react';
 
-function App() {
-  let [inputtodo, setinputtodo] = useState('');
-  let [todolist, settodolist] = useState([
-    {
-      id: 1,
-      task: 'react'
-    },
-    {
-      id: 2,
-      task: 'react'
-    }
-  ]);
-  let [nxtId, setNxtId] = useState(3); // Using state to manage nxtId
+import './App.css'
 
-  function onaddTodoElemnt() {
-    if (inputtodo === '') {
-      alert('Add Some Task');
-    } else {
-      let newTodo = [
-        ...todolist,
-        {
-          id: nxtId,
-          task: inputtodo
-        }
-      ];
-      settodolist(newTodo);
-      setinputtodo('');
-      setNxtId(nxtId + 1); // Incrementing nxtId when adding a new todo
-    }
-  }
+function App() { 
 
-  function ondeletetodo(id) {
-    let newTodoslist = todolist.filter((todo) => todo.id !== id);
-    settodolist(newTodoslist);
-  }
+  let [mangostate , setmangostate] = useState(0)
+  let [Bananastate, setbananana] =useState(0) 
 
-  return (
-    <div>
-      <h1>Todo App</h1>
-      <div className='container'>
-        <input
-          type='text'
-          value={inputtodo}
-          onChange={(event) => {
-            let inputValue = event.target.value;
-            setinputtodo(inputValue);
-          }}
-        />
-        <button className='button' onClick={onaddTodoElemnt}>
-          Add
-        </button>
-      </div>
-      <div>
-        <ul>
-          {todolist.map((todo) => {
-            return (
-              <li key={todo.id} className='list-group'>
-                <p className='para'>{todo.task}</p>
-                <button className='into-button' onClick={() => ondeletetodo(todo.id)}>
-                  ❌
-                </button>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-    </div>
-  );
+function onmangoEat () {
+  setmangostate(mangostate+1)
+  
+} 
+
+function onbanananEat() {
+  setbananana(Bananastate+1)
 }
 
+
+  return(
+<div>
+<div className='container'>
+<div className='card'>
+<h1>Bob ate <span>{mangostate}</span> mangoes <span>{Bananastate}</span> Banana</h1> 
+<div className='fruits'>
+<div>
+  <div>
+  <img src='https://assets.ccbp.in/frontend/react-js/mango-img.png' alt='mango'/>  
+<div>
+  <button onClick={onmangoEat}>Eat Mango</button>
+</div>
+</div> 
+</div> 
+<div>
+  <div>
+  <img src='https://assets.ccbp.in/frontend/react-js/banana-img.png' alt='mango'/>  
+<div>
+  <button onClick={onbanananEat}>Eat Bnanana</button>
+</div>
+</div> 
+</div>
+</div>
+</div>
+    </div>
+    </div>
+  )
+}
 export default App;

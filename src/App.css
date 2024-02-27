@@ -1,39 +1,36 @@
 .container{
+  background-color: #ffd569;
+  height: 100vh;
+  padding: 12px;
   display: flex;
-  gap: 10px;
   align-items: center;
   justify-content: center;
+}
+.card{
+  background-color: #ffffff;
+  border-radius: 12px;
+  width: 700px;
+  text-align: center;
+
 }
 h1{
   text-align: center;
 }
-input{
-  width: 50%;
-  padding: 12px;
-  border-radius: 12px;
-  border: 2px solid gray;
+img{
+  height: 200px;
 }
-.list-group{
+.fruits{
   display: flex;
+  flex-direction:row;
   justify-content: center;
+  align-items: center;
 }
-.button{
-  height: 30px;
-}
-.para{
-  width: 50%;
-}
-.button{
-  background-color: blue;
-  color: #ffffff;
+button{
+  background-color: #007bff;
+  border-radius: 12px;
   border-width: 0px;
-  border-radius: 10px;
-  height: 38px;
-  width: 70px;
-}
-
-.into-button{
-  border-radius: 10px;
-  width: 40px;
-  height: 26px;
+  color: #ffffff;
+  height: 36px;
+  width: 136px;
+  margin: 12px;
 }
